@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds.testing;
+package paper1.exericse1.counterthread;
 
 /**
  *
  * @author Florian Fußeder
  */
-public class DSTesting
+public class Paper1Exericse1CounterThread
 {
 
     /**
@@ -17,7 +17,10 @@ public class DSTesting
      */
     public static void main(String[] args)
     {
-        System.out.println("Hello World");
+        new CounterThread("Counter 1").start();
+        new CounterThread("Counter 2").start();
+        new CounterThread("Counter 3").start();
+        new CounterThread("Counter 4").start();
     }
-
+    
 }

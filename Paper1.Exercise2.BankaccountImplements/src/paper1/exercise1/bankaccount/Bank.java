@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds.testing;
+package paper1.exercise1.bankaccount;
 
 /**
  *
  * @author Florian Fußeder
  */
-public class DSTesting
+public class Bank
 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args)
     {
-        System.out.println("Hello World");
+        Account acc = new Account(0);
+        new Thread(new Abheber(acc)).start();
+        new Thread(new Einzahler(acc)).start();
+        new Thread(new Kontoauszug(acc)).start();
     }
-
 }
