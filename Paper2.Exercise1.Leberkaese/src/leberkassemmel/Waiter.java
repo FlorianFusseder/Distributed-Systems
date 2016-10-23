@@ -23,6 +23,7 @@ public class Waiter extends Thread
     {
         this.theke = theke;
         this.objectName = kellner;
+        this.setName(kellner);
     }
 
     public KitchenCounter getTheke()
@@ -51,6 +52,13 @@ public class Waiter extends Thread
         while (true)
         {
             theke.put();
+            try
+            {
+                sleep(50);
+            } catch (InterruptedException ex)
+            {
+                Logger.getLogger(Waiter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

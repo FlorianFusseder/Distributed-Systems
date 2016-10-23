@@ -23,6 +23,7 @@ public class Student extends Thread
     {
         this.theke = theke;
         this.objectName = string;
+        this.setName(string);
     }
 
     public KitchenCounter getTheke()
