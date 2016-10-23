@@ -43,21 +43,21 @@ public class Student extends Thread
     public void setObjectName(String objectName)
     {
         this.objectName = objectName;
-    }
-
+    }   
+    
+    
     @Override
     public void run()
     {
         while (true)
         {
             theke.take();
-            System.out.println(toString() + " got a semme");
             try
             {
-                sleep((long) (Math.random() * 10000));
-            } catch (InterruptedException e)
+                sleep(500);
+            } catch (InterruptedException ex)
             {
-                /* ignorieren */
+                Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

@@ -10,7 +10,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.misc.ConditionLock;
 
 /**
  *
@@ -46,8 +45,8 @@ public class KitchenCounter
                     Logger.getLogger(KitchenCounter.class.getName()).log(Level.SEVERE, null, ex);
                 }
             this.counter++;
+            System.out.println(Thread.currentThread().getName() + " " + toString());
             volleTheke.signal();
-            System.out.println(toString());
         } finally
         {
             lock.unlock();
@@ -68,8 +67,8 @@ public class KitchenCounter
                     Logger.getLogger(KitchenCounter.class.getName()).log(Level.SEVERE, null, ex);
                 }
             this.counter--;
+            System.out.println(Thread.currentThread().getName() + " " + toString());
             leereTheke.signalAll();
-            System.out.println(toString());
         } finally
         {
             lock.unlock();

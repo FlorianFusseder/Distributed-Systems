@@ -5,6 +5,10 @@
  */
 package leberkassemmel;
 
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Florian
@@ -46,16 +50,7 @@ public class Waiter extends Thread
     {
         while (true)
         {
-            try
-            {
-                sleep((long) (Math.random() * 3000));
-            } catch (InterruptedException e)
-            {
-                /* ignorieren */
-            }
             theke.put();
-            System.out.println(toString() + " did put a semme");
-
         }
     }
 
