@@ -5,19 +5,23 @@
  */
 package ds.testing;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  *
  * @author Florian Fußeder
  */
 public class DSTesting
 {
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
     {
-        System.out.println("Hello World");
+        ReentrantReadWriteLock l = new ReentrantReadWriteLock();
+        Lock rl = new ReentrantLock();
     }
 
 }
