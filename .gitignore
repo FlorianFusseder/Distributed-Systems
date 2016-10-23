@@ -337,3 +337,10 @@ __pycache__/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 >>>>>>> 8c31dc7411f38deb53f8c7878ae2421d52c121de
+/Leberkassemmel/nbproject/private/
+/Leberkassemmel/build/
+/Leberkassemmel/dist/
+/Paper2.Exercise1.Leberkaese/nbproject/private/
+/Paper2.Exercise1.Leberkaese/build/
+/Paper2.Exercise2.Downloads/nbproject/private/
+/Paper2.Exercise2.Downloads/build/
