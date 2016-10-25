@@ -68,7 +68,7 @@ public class KitchenCounter
                 }
             this.counter--;
             System.out.println(Thread.currentThread().getName() + " " + toString());
-            leereTheke.signalAll();
+            leereTheke.signal();
         } finally
         {
             lock.unlock();

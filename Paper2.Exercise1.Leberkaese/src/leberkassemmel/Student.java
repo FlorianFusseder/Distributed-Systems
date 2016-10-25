@@ -55,7 +55,7 @@ public class Student extends Thread
             theke.take();
             try
             {
-                sleep(500);
+                sleep(50);
             } catch (InterruptedException ex)
             {
                 Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
