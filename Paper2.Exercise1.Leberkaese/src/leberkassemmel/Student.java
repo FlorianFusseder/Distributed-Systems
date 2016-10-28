@@ -53,13 +53,13 @@ public class Student extends Thread
         while (true)
         {
             theke.take();
-//            try
-//            {
-//                sleep(50);
-//            } catch (InterruptedException ex)
-//            {
-//                Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try
+            {
+                sleep(2000);
+            } catch (InterruptedException ex)
+            {
+                Logger.getLogger(Student.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
