@@ -342,4 +342,8 @@ hs_err_pid*
 /Paper2.Exercise1.Leberkaese/build/
 /Paper2.Exercise2.Downloads/nbproject/private/
 /Paper2.Exercise2.Downloads/build/
+<<<<<<< HEAD
 /Paper2.Exercise2.Downloads/dist/
+=======
+/Hello.DBEngineering.Fusseder/Hello.DBEngineering.Fusseder/target/
+>>>>>>> d580d4e4eb42585fa269c5efa8996b9ccf756b9c

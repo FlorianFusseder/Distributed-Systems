@@ -46,11 +46,12 @@ public class KitchenCounter
                 }
             this.counter++;
             System.out.println(Thread.currentThread().getName() + " " + toString());
-            volleTheke.signal();
+            volleTheke.signal();           
         } finally
         {
             lock.unlock();
         }
+        
     }
 
     public void take()
@@ -73,6 +74,7 @@ public class KitchenCounter
         {
             lock.unlock();
         }
+        
     }
 
     @Override
