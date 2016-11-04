@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-public class Browser extends JFrame implements ActionListener
+public class BrowserLatch extends JFrame implements ActionListener
 {
 
     private int downloads;
@@ -25,11 +26,11 @@ public class Browser extends JFrame implements ActionListener
 
     // Deklaration Ihrer Synchronisations-Hilfsklassen hier:
     CountDownLatch startDownload;
-    CountDownLatch doneDownload;
+    CountDownLatch doneDownload; 
 
-    ArrayList<DownloadManager> dm = new ArrayList<>();
+    ArrayList<DownloadManagerLatch> dm = new ArrayList<>();
 
-    public Browser(int downloads)
+    public BrowserLatch(int downloads)
     {
         super("Mein Download-Browser");
 
@@ -52,7 +53,7 @@ public class Browser extends JFrame implements ActionListener
             // neue Download-Threads erzeugen und starten
             // ggf. müssen Synchronisations-Objekte im Konstruktor übergeben werden!!
             // balken ist ebenfalls zu übergeben!
-            new DownloadManager(startDownload, doneDownload, balken[i], String.valueOf(i)).start();
+            new DownloadManagerLatch(startDownload, doneDownload, balken[i], String.valueOf(i)).start();
 
         }
 
@@ -69,7 +70,7 @@ public class Browser extends JFrame implements ActionListener
 
     public static void main(String[] args) throws InterruptedException
     {
-        new Browser(5);
+        new BrowserLatch(5);
     }
 
     @Override
@@ -95,7 +96,7 @@ public class Browser extends JFrame implements ActionListener
                     startButton.setEnabled(true);
                 } catch (InterruptedException ex)
                 {
-                    Logger.getLogger(Browser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BrowserLatch.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }).start();

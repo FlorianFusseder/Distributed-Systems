@@ -18,14 +18,14 @@ import javax.swing.SwingUtilities;
  *
  * @author Florian Fußeder
  */
-class DownloadManager extends Thread
+class DownloadManagerLatch extends Thread
 {
 
     private final CountDownLatch startDownload;
     private final CountDownLatch doneDownload;
     private final JProgressBar jProgressBar;
 
-    DownloadManager(CountDownLatch startDownload, CountDownLatch doneDownload, JProgressBar jProgressBar, String Name)
+    DownloadManagerLatch(CountDownLatch startDownload, CountDownLatch doneDownload, JProgressBar jProgressBar, String Name)
     {
         this.startDownload = startDownload;
         this.doneDownload = doneDownload;
@@ -54,14 +54,14 @@ class DownloadManager extends Thread
                     sleep(new Random().nextInt(50) * 10);
                 } catch (InterruptedException ex)
                 {
-                    Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DownloadManagerLatch.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
             doneDownload.countDown();
         } catch (InterruptedException ex)
         {
-            Logger.getLogger(DownloadManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DownloadManagerLatch.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
