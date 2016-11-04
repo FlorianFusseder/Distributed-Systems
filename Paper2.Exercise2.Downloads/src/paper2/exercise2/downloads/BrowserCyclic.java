@@ -78,7 +78,11 @@ public class BrowserCyclic extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
 
-        try
+
+
+        new Thread(() ->
+        {
+                    try
         {
             System.out.println(String.valueOf(startDownload.getNumberWaiting()) + " + 1 -> startet");
             startDownload.await();
@@ -89,9 +93,7 @@ public class BrowserCyclic extends JFrame implements ActionListener
         {
             Logger.getLogger(BrowserCyclic.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        new Thread(() ->
-        {
+            
             System.out.println("go");
 
             try
@@ -103,7 +105,7 @@ public class BrowserCyclic extends JFrame implements ActionListener
                 // Auf Ende aller Download-Threads warten ... erst dann die Beschriftung ändern
                 // Achtung, damit die Oberflaeche "reaktiv" bleibt dies in einem eigenen Runnable ausfuehren!
                 doneDownload.await();
-                startButton.setText("Downloads fertig");
+                startButton.setText("Downloads starten");
                 startDownload.reset();
                 doneDownload.reset();
                 startButton.setEnabled(true);
