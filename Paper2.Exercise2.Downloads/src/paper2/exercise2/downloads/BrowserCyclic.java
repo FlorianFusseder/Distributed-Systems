@@ -78,22 +78,20 @@ public class BrowserCyclic extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
 
-
-
         new Thread(() ->
         {
-                    try
-        {
-            System.out.println(String.valueOf(startDownload.getNumberWaiting()) + " + 1 -> startet");
-            startDownload.await();
-        } catch (InterruptedException ex)
-        {
-            Logger.getLogger(BrowserCyclic.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BrokenBarrierException ex)
-        {
-            Logger.getLogger(BrowserCyclic.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+            try
+            {
+                System.out.println(String.valueOf(startDownload.getNumberWaiting()) + " + 1 -> startet");
+                startDownload.await();
+            } catch (InterruptedException ex)
+            {
+                Logger.getLogger(BrowserCyclic.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (BrokenBarrierException ex)
+            {
+                Logger.getLogger(BrowserCyclic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             System.out.println("go");
 
             try
