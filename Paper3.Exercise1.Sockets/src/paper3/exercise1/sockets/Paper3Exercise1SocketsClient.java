@@ -37,6 +37,7 @@ public class Paper3Exercise1SocketsClient
         try
         {
             //addr = InetAddress.getByName("88.133.180.69");
+            //addr = InetAddress.getByName("192.168.178.39");
             addr = InetAddress.getLocalHost();
         } catch (UnknownHostException ex)
         {
