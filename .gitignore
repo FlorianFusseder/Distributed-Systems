@@ -353,3 +353,6 @@ hs_err_pid*
 /Paper3.Exercise1.Sockets/build/
 /Paper3.Exercise1.Sockets.Server/dist/
 /Paper3.Exercise1.Sockets.Server/build/
+/Paper3.Exercise2.Socket.Webserver/nbproject/private/
+/Paper3.Exercise2.Socket.Webserver/build/
+/Paper3.Exercise2.Socket.Webserver/dist/
