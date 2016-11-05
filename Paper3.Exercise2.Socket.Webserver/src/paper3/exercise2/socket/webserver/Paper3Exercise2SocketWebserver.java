@@ -40,6 +40,8 @@ public class Paper3Exercise2SocketWebserver
 
         try (ServerSocket servSocket = new ServerSocket(8080))
         {
+            servSocket.setSoTimeout(0);
+            
             while (true)
             {
                 Socket socket = servSocket.accept();
