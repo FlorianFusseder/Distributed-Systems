@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -56,7 +57,7 @@ public class ServerResponse implements Runnable
 
             String str = reader.readLine();
             Path p = Paths.get(str.split(" ")[1].substring(1));
-            List<String> zeilen = Files.readAllLines(p);
+            List<String> zeilen = Files.readAllLines(p, Charset.defaultCharset());
 
             String doc = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: ";
             String temp = "";
