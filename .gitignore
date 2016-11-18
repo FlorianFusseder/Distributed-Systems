@@ -336,17 +336,13 @@ __pycache__/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
->>>>>>> 8c31dc7411f38deb53f8c7878ae2421d52c121de
+
 /Paper2.Exercise1.Leberkaese/nbproject/private/
 /Paper2.Exercise1.Leberkaese/dist/
 /Paper2.Exercise1.Leberkaese/build/
 /Paper2.Exercise2.Downloads/nbproject/private/
 /Paper2.Exercise2.Downloads/build/
-<<<<<<< HEAD
 /Paper2.Exercise2.Downloads/dist/
-=======
-/Hello.DBEngineering.Fusseder/Hello.DBEngineering.Fusseder/target/
->>>>>>> d580d4e4eb42585fa269c5efa8996b9ccf756b9c
 /Paper3.Exercise1.Sockets/nbproject/private/
 /Paper3.Exercise1.Sockets.Server/nbproject/private/
 /Paper3.Exercise1.Sockets/dist/
@@ -358,7 +354,6 @@ hs_err_pid*
 /Paper3.Exercise2.Socket.Webserver/dist/
 /paper4.Exercise1.Socket.Chat/nbproject/private/
 /paper4.Exercise1.Socket.Chat/build/
-/DS.Testing/dist/
 /Paper5.Exercise0.RMI.Test/nbproject/private/
 /Paper5.Exercise0.RMI.Test/build/
 /Paper5.Exercise0.RMI.Test/dist/
