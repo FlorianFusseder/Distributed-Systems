@@ -12,7 +12,8 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import paper5.exercise1.bank.IAccountable;
+import paper5.exercise1.bank.IManager;
+
 /**
  *
  * @author Florian
@@ -29,7 +30,8 @@ public class Paper5Exercise1BankClient {
             String temp;
             try {
                 Registry reg = LocateRegistry.getRegistry(1099);
-                IAccountable acc = (IAccountable) reg.lookup("Balance");
+                IManager manager = (IManager) reg.lookup("Balance");
+                //Cheque c = new Cheque();
 
                 System.out.println("gib ein:");
                 while (!"exit".equals(temp = sc.nextLine())) {
@@ -38,9 +40,9 @@ public class Paper5Exercise1BankClient {
                     int cents = Integer.parseInt(sp[1]);
 
                     if (cents > 0) {
-                        acc.deposit(accountID, cents);
+                        manager.deposit(accountID, cents);
                     } else {
-                        acc.withdraw(accountID, cents);
+                        manager.withdraw(accountID, cents);
                     }
                 }
 

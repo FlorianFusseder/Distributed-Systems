@@ -5,9 +5,7 @@
  */
 package paper5.exercise1.bank;
 
-import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -27,8 +25,8 @@ public class Paper5Exercise1Bank {
     public static void main(String[] args) {
 
         try {
-            IAccountable acc = new AccountManager();
-            IAccountable stub = (IAccountable) UnicastRemoteObject.exportObject(acc, 0);
+            IManager acc = new AccountManager();
+            IManager stub = (IManager) UnicastRemoteObject.exportObject(acc, 0);
 
             Registry reg = LocateRegistry.createRegistry(1099);
             reg.bind("Balance", stub);

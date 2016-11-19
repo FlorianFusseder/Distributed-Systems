@@ -5,15 +5,17 @@
  */
 package paper5.exercise1.bank;
 
+import java.rmi.RemoteException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  *
  * @author Florian
  */
-public class AccountManager implements IAccountable {
+public class AccountManager implements IManager {
 
     Map<String, Account> accountMap;
 
@@ -57,6 +59,12 @@ public class AccountManager implements IAccountable {
     public void withdraw(String iban, int cents) {
         this.alterBalance(iban, cents);
     }
+    
+    @Override
+    public void withdraw(Cheque cheque) throws RemoteException {
+        this.alterBalance(cheque.getPayAccount().getIban(), -cheque.getPayment());
+        this.alterBalance(cheque.getTakeAccount().getIban(), cheque.getPayment());
+    }
 
     private void alterBalance(String iban, int cents) {
         Account acc = this.accountMap.get(iban);
@@ -68,7 +76,5 @@ public class AccountManager implements IAccountable {
         } else {
             throw new NullPointerException("Iban " + iban + " does not exist");
         }
-        
-        
     }
 }

@@ -12,8 +12,10 @@ import java.rmi.RemoteException;
  *
  * @author Florian
  */
-public interface IAccountable extends Remote{
+public interface IManager extends Remote{
         
     public void deposit(String iban, int cents) throws RemoteException;
     public void withdraw(String iban, int cents) throws RemoteException;
+    public void withdraw(Cheque cheque) throws RemoteException;
+
 }

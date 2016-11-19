@@ -364,3 +364,13 @@ hs_err_pid*
 /Paper5.Exercise1.BankServer/dist/
 /Paper5.Exercise1.BankClient/build/
 /Paper5.Exercise1.BankClient/dist/
+/Paper5.Exercise1.IManager.Lib/nbproject/private/
+/Paper5.Exercise1.IManager.Lib/dist/
+/Paper5.Exercise1.IManager.Lib/build/
+/temp/nbproject/private/
+/temp/dist/
+/temp/build/
+/Paper5.Exercise1.Schufa/nbproject/private/
+/templib/nbproject/private/
+/templib/dist/
+/templib/build/

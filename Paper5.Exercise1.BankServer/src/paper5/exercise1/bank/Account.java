@@ -10,7 +10,7 @@ package paper5.exercise1.bank;
  *
  * @author Florian
  */
-public class Account {
+public class Account implements IAccount{
 
     private String iban;
     private int balance;
@@ -22,6 +22,7 @@ public class Account {
         this.iban = iban;
     }
 
+    @Override
     public String getIban() {
         return iban;
     }
@@ -30,6 +31,7 @@ public class Account {
         this.iban = iban;
     }
 
+    @Override
     public int getBalance() {
         return balance;
     }
