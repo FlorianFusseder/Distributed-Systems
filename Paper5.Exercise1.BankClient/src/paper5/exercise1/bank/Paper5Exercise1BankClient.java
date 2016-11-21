@@ -55,8 +55,6 @@ public class Paper5Exercise1BankClient {
 
                         Cheque c = new Cheque(a, b, cents);
                         manager.withdraw(c);
-
-                        System.out.println(a.getBalance());
                     }
                 }
 

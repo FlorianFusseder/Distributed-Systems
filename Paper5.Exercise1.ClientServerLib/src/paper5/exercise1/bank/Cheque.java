@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author Florian
  */
 public class Cheque implements Serializable{
-
     private IAccount payAccount;
     private IAccount takeAccount;
     private int cents;

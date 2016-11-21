@@ -19,6 +19,8 @@ public interface IManager extends Remote {
     public void withdraw(String iban, int cents) throws RemoteException;
 
     public void withdraw(Cheque cheque) throws RemoteException;
+    
+    public void reverseWithdraw(Cheque cheque) throws RemoteException;
 
     public IAccount getAccount(String iban) throws RemoteException;
 }

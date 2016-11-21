@@ -17,8 +17,9 @@ import java.util.Map;
 public class AccountManager implements IManager {
 
     Map<String, Account> accountMap;
+    ILiquidiyChecker checker;
 
-    public AccountManager() {
+    public AccountManager(ILiquidiyChecker checker) {
 
         this.accountMap = new HashMap<>();
 
@@ -32,9 +33,7 @@ public class AccountManager implements IManager {
         this.accountMap.put(c.getIban(), c);
         this.accountMap.put(d.getIban(), d);
 
-        this.accountMap.entrySet().forEach((entry) -> {
-            System.out.println(entry.getValue().toString());
-        });
+        this.checker = checker;
     }
 
     @Override
@@ -45,17 +44,29 @@ public class AccountManager implements IManager {
     @Override
     public void deposit(String iban, int cents) {
         this.alterBalance(iban, cents);
+        System.out.println("");
     }
 
     @Override
     public void withdraw(String iban, int cents) {
         this.alterBalance(iban, cents);
+        System.out.println("");
     }
 
     @Override
     public void withdraw(Cheque cheque) throws RemoteException {
+
+        this.checker.checkCheque(cheque);
         this.alterBalance(cheque.getPayAccount().getIban(), -cheque.getPayment());
         this.alterBalance(cheque.getTakeAccount().getIban(), cheque.getPayment());
+        System.out.println("");
+    }
+
+    @Override
+    public void reverseWithdraw(Cheque cheque) {
+        this.alterBalance(cheque.getPayAccount().getIban(), cheque.getPayment());
+        this.alterBalance(cheque.getTakeAccount().getIban(), -cheque.getPayment());
+        System.out.println("");
     }
 
     public Map<String, Account> getAccountMap() {
@@ -70,7 +81,7 @@ public class AccountManager implements IManager {
         Account acc = this.accountMap.get(iban);
 
         if (this.accountMap.containsKey(iban)) {
-            System.out.print(acc.toString() +  " -> ");
+            System.out.print(acc.toString() + " -> ");
             acc.alterBalance(cents);
             System.out.println(acc.toString());
         } else {
