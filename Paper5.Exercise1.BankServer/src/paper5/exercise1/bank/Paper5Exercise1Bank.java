@@ -25,6 +25,7 @@ public class Paper5Exercise1Bank {
     public static void main(String[] args) {
 
         try {
+
             IManager acc = new AccountManager();
             IManager stub = (IManager) UnicastRemoteObject.exportObject(acc, 0);
 

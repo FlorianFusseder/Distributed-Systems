@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paper5.exercise1.bankclient;
+package paper5.exercise1.bank;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -12,7 +12,6 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import paper5.exercise1.bank.IManager;
 
 /**
  *
@@ -31,18 +30,33 @@ public class Paper5Exercise1BankClient {
             try {
                 Registry reg = LocateRegistry.getRegistry(1099);
                 IManager manager = (IManager) reg.lookup("Balance");
-                //Cheque c = new Cheque();
 
                 System.out.println("gib ein:");
                 while (!"exit".equals(temp = sc.nextLine())) {
                     String[] sp = temp.split(" ");
-                    String accountID = sp[0];
-                    int cents = Integer.parseInt(sp[1]);
 
-                    if (cents > 0) {
-                        manager.deposit(accountID, cents);
+                    if (sp.length == 2) {
+                        String accountID = sp[0];
+                        int cents = Integer.parseInt(sp[1]);
+
+                        if (cents > 0) {
+                            manager.deposit(accountID, cents);
+                        } else {
+                            manager.withdraw(accountID, cents);
+                        }
                     } else {
-                        manager.withdraw(accountID, cents);
+                        IAccount a = manager.getAccount(sp[0]);
+                        IAccount b = manager.getAccount(sp[1]);
+                        int cents = Integer.parseInt(sp[2]);
+
+                        System.out.println(sp[2] + " ct: "
+                                + manager.getAccount(sp[0]).toString() + " -> "
+                                + manager.getAccount(sp[1]).toString());
+
+                        System.out.println(a.getBalance());
+                        
+                        Cheque c = new Cheque(a, b, cents);
+                        manager.withdraw(c);
                     }
                 }
 

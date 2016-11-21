@@ -5,16 +5,22 @@
  */
 package paper5.exercise1.bank;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author Florian
  */
-class Cheque {
-    
+public class Cheque {
+
     private IAccount payAccount;
     private IAccount takeAccount;
     private int cents;
     final private String bankName;
+
+    public Cheque() throws RemoteException {
+        this.bankName = "FF_Bank";
+    }
 
     public Cheque(IAccount payAccount, IAccount takeAccount, int cents) {
         this.payAccount = payAccount;
@@ -50,5 +56,5 @@ class Cheque {
     @Override
     public String toString() {
         return "Cheque{" + "payAccount=" + payAccount + ", takeAccount=" + takeAccount + ", cents=" + cents + ", bankName=" + bankName + '}';
-    }    
+    }
 }

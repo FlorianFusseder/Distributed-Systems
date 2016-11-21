@@ -5,7 +5,6 @@
  */
 package paper5.exercise1.bank;
 
-
 /**
  *
  * @author Florian
