@@ -5,14 +5,14 @@
  */
 package paper5.exercise1.bank;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
+import java.io.Serializable;
 /**
  *
  * @author Florian
  */
-public interface IAccount extends Remote{
-    String getIban() throws RemoteException;
-    int getBalance() throws RemoteException;
+public interface IAccount extends Serializable {
+
+    String getIban();
+
+    int getBalance();
 }

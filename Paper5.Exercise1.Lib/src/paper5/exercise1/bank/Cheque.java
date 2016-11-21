@@ -5,22 +5,18 @@
  */
 package paper5.exercise1.bank;
 
-import java.rmi.RemoteException;
+import java.io.Serializable;
 
 /**
  *
  * @author Florian
  */
-public class Cheque {
+public class Cheque implements Serializable{
 
     private IAccount payAccount;
     private IAccount takeAccount;
     private int cents;
-    final private String bankName;
-
-    public Cheque() throws RemoteException {
-        this.bankName = "FF_Bank";
-    }
+    final private transient String bankName;
 
     public Cheque(IAccount payAccount, IAccount takeAccount, int cents) {
         this.payAccount = payAccount;

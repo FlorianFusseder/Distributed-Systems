@@ -9,7 +9,7 @@ package paper5.exercise1.bank;
  *
  * @author Florian
  */
-public class Account implements IAccount{
+public class Account implements IAccount {
 
     private String iban;
     private int balance;

@@ -53,10 +53,10 @@ public class Paper5Exercise1BankClient {
                                 + manager.getAccount(sp[0]).toString() + " -> "
                                 + manager.getAccount(sp[1]).toString());
 
-                        System.out.println(a.getBalance());
-                        
                         Cheque c = new Cheque(a, b, cents);
                         manager.withdraw(c);
+
+                        System.out.println(a.getBalance());
                     }
                 }
 

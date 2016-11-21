@@ -7,14 +7,18 @@ package paper5.exercise1.bank;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
 /**
  *
  * @author Florian
  */
 public interface IManager extends Remote {
-        
+
     public void deposit(String iban, int cents) throws RemoteException;
+
     public void withdraw(String iban, int cents) throws RemoteException;
+
     public void withdraw(Cheque cheque) throws RemoteException;
+
     public IAccount getAccount(String iban) throws RemoteException;
 }
