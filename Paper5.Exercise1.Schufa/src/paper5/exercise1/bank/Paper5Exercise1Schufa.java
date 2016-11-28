@@ -19,22 +19,21 @@ import java.util.logging.Logger;
  */
 public class Paper5Exercise1Schufa {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        try {
+	/**
+	 * @param args the command line arguments
+	 */
+	public static void main(String[] args) {
+		try {
+			ILiquidiyChecker check = new LiquidityChecker();
+			ILiquidiyChecker stub = (ILiquidiyChecker) UnicastRemoteObject.exportObject(check, 0);
 
-            ILiquidiyChecker check = new LiquidityChecker();
-            ILiquidiyChecker stub = (ILiquidiyChecker) UnicastRemoteObject.exportObject(check, 0);
+			Registry reg = LocateRegistry.createRegistry(1099);
 
-            Registry reg = LocateRegistry.createRegistry(1099);
-            reg.bind("Check", stub);
-            System.out.println("Started");
+			reg.bind("Check", stub);
+			System.out.println("Started");
 
-            
-        } catch (RemoteException | AlreadyBoundException ex) {
-            Logger.getLogger(Paper5Exercise1Schufa.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+		} catch (RemoteException | AlreadyBoundException ex) {
+			Logger.getLogger(Paper5Exercise1Schufa.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

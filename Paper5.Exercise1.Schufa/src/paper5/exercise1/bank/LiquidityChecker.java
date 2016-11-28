@@ -6,10 +6,8 @@
 package paper5.exercise1.bank;
 
 import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.Map;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -18,17 +16,15 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @author Florian
  */
 public class LiquidityChecker implements ILiquidiyChecker {
-
-    private Map<Cheque, Future<Boolean>> map;
-    private Executor exec;
+    
+	private Executor exec;
 
     public LiquidityChecker() {
-        this.map = new HashMap<>();
         this.exec = new ScheduledThreadPoolExecutor(16);
     }
 
     @Override
-    public void checkCheque(Cheque cheque) throws RemoteException {
+    public FutureWrap checkCheque(Cheque cheque) throws RemoteException {
 
         FutureTask<Boolean> future = new FutureTask<>(
                 () -> {
@@ -38,15 +34,11 @@ public class LiquidityChecker implements ILiquidiyChecker {
 
                     return b;
                 });
-        
-        this.map.put(cheque, future);
-        
+		
         exec.execute(future);
+		FutureWrap futureWrap = new FutureWrap(future);
+		
+		UnicastRemoteObject.exportObject((IFuture) futureWrap, 0);
+		return futureWrap;
     }
-
-    @Override
-    public Map<Cheque, Future<Boolean>> getPendingFutures() throws RemoteException {
-        return map;
-    }
-
 }

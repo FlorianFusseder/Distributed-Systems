@@ -5,6 +5,8 @@
  */
 package paper5.exercise1.bank;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Florian
@@ -35,7 +37,7 @@ public class Account implements IAccount {
         return balance;
     }
 
-    public void alterBalance(int balance) {
+    public synchronized void alterBalance(int balance) {
         this.balance += balance;
     }
 

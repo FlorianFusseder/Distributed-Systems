@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -48,16 +47,17 @@ public class Paper5Exercise1Bank {
                 new Thread(() -> {
                     while (true) {
                         try {
-                            for (Entry<Cheque, Future<Boolean>> entry : checker.getPendingFutures().entrySet()) {
+                            for (Entry<Cheque, IFuture> entry : ((AccountManager) acc).getMap().entrySet()) {
+								
                                 if (entry.getValue().isDone() && !entry.getValue().isCancelled()) {
                                     System.out.println(entry.getKey().toString() + " -> " + entry.getValue().get().toString());
                                     if (!entry.getValue().get()) {
                                         acc.reverseWithdraw(entry.getKey());
                                     }
-                                    checker.getPendingFutures().remove(entry.getKey());
+                                    ((AccountManager) acc).getMap().remove(entry.getKey());
                                 }
                             }
-                        } catch (RemoteException | InterruptedException | ExecutionException ex) {
+                        } catch (RemoteException ex) {
                             Logger.getLogger(Paper5Exercise1Bank.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }

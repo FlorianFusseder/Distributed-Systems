@@ -12,8 +12,12 @@ import java.rmi.RemoteException;
  *
  * @author Florian
  */
-public interface ILiquidiyChecker extends Remote {
-
-    IFuture checkCheque(Cheque cheque) throws RemoteException;
-
+public interface IFuture extends Remote{
+	
+	Boolean isDone() throws RemoteException;
+	
+	Boolean get() throws RemoteException;
+	
+	boolean isCancelled() throws RemoteException;
+	
 }
