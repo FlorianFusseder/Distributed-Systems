@@ -24,7 +24,7 @@ public class LiquidityChecker implements ILiquidiyChecker {
     }
 
     @Override
-    public FutureWrap checkCheque(Cheque cheque) throws RemoteException {
+    public IFuture checkCheque(Cheque cheque) throws RemoteException {
 
         FutureTask<Boolean> future = new FutureTask<>(
                 () -> {
@@ -36,9 +36,9 @@ public class LiquidityChecker implements ILiquidiyChecker {
                 });
 		
         exec.execute(future);
-		FutureWrap futureWrap = new FutureWrap(future);
+		IFuture futureWrap = new FutureWrap(future);
 		
-		UnicastRemoteObject.exportObject((IFuture) futureWrap, 0);
-		return futureWrap;
+		IFuture returnFuture = (IFuture) UnicastRemoteObject.exportObject(futureWrap, 0);
+		return returnFuture;
     }
 }
