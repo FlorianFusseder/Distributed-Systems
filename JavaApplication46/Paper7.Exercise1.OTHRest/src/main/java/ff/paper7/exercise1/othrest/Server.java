@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.othr.fusseder.paper5.exercise0.Services;
+package ff.paper7.exercise1.othrest;
 
+import Rest.StudentService;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
@@ -15,19 +16,21 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 /**
  *
- * @author Florian Fußeder
+ * @author Florian
  */
 public class Server {
+
 	public static void main(String[] args) throws IOException {
+
 		HttpServer webserver = HttpServer.create(new InetSocketAddress(8080), 0);
-		
+
 		ResourceConfig config = new ResourceConfig();
-		config.register(GeschenkeService.class);
-		
+		config.register(StudentService.class);
+
 		HttpHandler handler = RuntimeDelegate.getInstance().createEndpoint(config, HttpHandler.class);
 		webserver.createContext("/webapi", handler);
 		webserver.start();
-		
+
 		JOptionPane.showMessageDialog(null, "Server started");
-	}	
+	}
 }
