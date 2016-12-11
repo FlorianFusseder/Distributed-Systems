@@ -12,10 +12,8 @@ import java.util.List;
  * @author Florian Fußeder
  */
 public class WunschZettel {
-	
-	private int	id;
-	private String name;
-	private double bravheitsIndex;
+	private String name = "Florian";
+	private double bravheitsIndex = 9.9;
 	private List<Wunsch> wuensche;
 
 	public WunschZettel() {

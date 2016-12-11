@@ -5,7 +5,6 @@
  */
 package paper5.exercise0.rmi.test;
 
-import java.rmi.AccessException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

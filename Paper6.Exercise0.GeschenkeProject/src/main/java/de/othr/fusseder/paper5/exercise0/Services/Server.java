@@ -28,7 +28,6 @@ public class Server {
 		webserver.createContext("/webapi", handler);
 		webserver.start();
 		
-		JOptionPane.showMessageDialog(null, "ServerStoped");
-		
+		JOptionPane.showMessageDialog(null, "ServerStopped");
 	}	
 }
