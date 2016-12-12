@@ -5,12 +5,14 @@
  */
 package Entitys;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Florian
  */
 public class Adress {
-	
+
 	private String street;
 	private String location;
 
