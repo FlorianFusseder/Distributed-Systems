@@ -16,6 +16,9 @@ public class Adress {
 	private String street;
 	private String location;
 
+	public Adress() {
+	}
+
 	public Adress(String street, String location) {
 		this.street = street;
 		this.location = location;

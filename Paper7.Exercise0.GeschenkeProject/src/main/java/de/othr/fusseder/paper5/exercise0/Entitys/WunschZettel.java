@@ -52,7 +52,4 @@ public class WunschZettel {
 	public void setWuensche(List<Wunsch> wuensche) {
 		this.wuensche = wuensche;
 	}
-	
-	
-	
 }
