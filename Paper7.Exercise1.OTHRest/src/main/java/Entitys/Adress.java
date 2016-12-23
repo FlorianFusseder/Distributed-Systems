@@ -5,12 +5,13 @@
  */
 package Entitys;
 
-import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Florian
  */
+@XmlRootElement
 public class Adress {
 
 	private String street;

@@ -5,13 +5,21 @@
  */
 package Entitys;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Florian
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Student {
 
-	private String mnr;
+	@XmlAttribute(name = "Matrikelnummer")
+	private String matrNr;
 	private String firstName;
 	private String lastName;
 	private int etcs;
@@ -20,20 +28,20 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(String mnr, String firstName, String lastName, int etcs, Adress adress) {
-		this.mnr = mnr;
+	public Student(String matrNr, String firstName, String lastName, int etcs, Adress adress) {
+		this.matrNr = matrNr;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.etcs = etcs;
 		this.adress = adress;
 	}
 
-	public String getMnr() {
-		return mnr;
+	public String getMatrNr() {
+		return matrNr;
 	}
 
-	public void setMnr(String mnr) {
-		this.mnr = mnr;
+	public void setMatrNr(String matrNr) {
+		this.matrNr = matrNr;
 	}
 
 	public String getFirstName() {

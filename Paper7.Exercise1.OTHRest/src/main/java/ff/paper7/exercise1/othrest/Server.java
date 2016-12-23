@@ -28,7 +28,7 @@ public class Server {
 		config.register(StudentService.class);
 
 		HttpHandler handler = RuntimeDelegate.getInstance().createEndpoint(config, HttpHandler.class);
-		webserver.createContext("/webapi", handler);
+		webserver.createContext("/othrest", handler);
 		webserver.start();
 
 		JOptionPane.showMessageDialog(null, "Server started");
