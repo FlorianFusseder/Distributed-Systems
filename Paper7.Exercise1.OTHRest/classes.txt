@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listOfStudents>
+    <arr Matrikelnummer="1">
+        <firstName>Florian</firstName>
+        <lastName>Fusseder</lastName>
+        <etcs>32</etcs>
+        <address>
+            <location>Gankofen</location>
+            <street>langenkatzbach</street>
+        </address>
+    </arr>
+    <arr Matrikelnummer="2">
+        <firstName>Floyd</firstName>
+        <lastName>Kretschmar</lastName>
+        <etcs>3232</etcs>
+        <address>
+            <location>Regensburg</location>
+            <street>Regensburg</street>
+        </address>
+    </arr>
+    <arr Matrikelnummer="22">
+        <firstName>a</firstName>
+        <lastName>a</lastName>
+        <etcs>32</etcs>
+        <address>
+            <location>a</location>
+            <street>a</street>
+        </address>
+    </arr>
+</listOfStudents>

@@ -22,6 +22,8 @@ public class Server {
 
 	public static void main(String[] args) throws IOException {
 
+		Persistence.build();
+
 		HttpServer webserver = HttpServer.create(new InetSocketAddress(8080), 0);
 
 		ResourceConfig config = new ResourceConfig();
@@ -32,5 +34,6 @@ public class Server {
 		webserver.start();
 
 		JOptionPane.showMessageDialog(null, "Server started");
+
 	}
 }

@@ -28,6 +28,13 @@ public class StudentService implements Serializable {
 
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
+	@Path("")
+	public Student[] getAllStudents() {
+		return Persistence.getArr();
+	}
+
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
 	@Path("student/{id}")
 	public Student getStudentById(@PathParam("id") int id) {
 		Student s = Persistence.getArr()[id];
@@ -55,9 +62,30 @@ public class StudentService implements Serializable {
 	@Path("student/{id}")
 	public void deleteStudentById(@PathParam("id") int id) {
 		System.out.println("Deleting: " + Persistence.getArr()[id].toString());
-		Persistence.getArr()[id] = null;
+		Student[] s = Persistence.getArr();
 
-		System.out.println(Persistence.output());
+		if (s.length > id) {
+			s[id] = null;
+			Persistence.save(s);
+		}
+
+	}
+
+	@POST
+	@Path("newStudent")
+	@Consumes(MediaType.APPLICATION_XML)
+	public void createStudent(Student s) {
+
+		Student student = new Student.Builder(s.getMatrNr())
+				.firstName(s.getFirstName())
+				.lastName(s.getLastName())
+				.ects(s.getEtcs())
+				.address(s.getAdress())
+				.build();
+		
+		Persistence.add(student);
+
+		
 	}
 
 }

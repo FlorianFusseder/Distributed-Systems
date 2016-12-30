@@ -23,17 +23,55 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private int etcs;
-	private Adress adress;
+	private Address address;
 
 	public Student() {
 	}
 
-	public Student(String matrNr, String firstName, String lastName, int etcs, Adress adress) {
-		this.matrNr = matrNr;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.etcs = etcs;
-		this.adress = adress;
+	private Student(Builder b) {
+		this.matrNr = b.matrNr;
+		this.address = b.adress;
+		this.firstName = b.firstName;
+		this.lastName = b.lastName;
+		this.etcs = b.etcs;
+	}
+
+	public static class Builder {
+
+		private String matrNr;
+		private String firstName;
+		private String lastName;
+		private int etcs;
+		private Address adress;
+
+		public Builder(String matrNr) {
+			this.matrNr = matrNr;
+		}
+
+		public Builder firstName(String firstName) {
+			this.firstName = firstName;
+			return this;
+		}
+
+		public Builder lastName(String lastName) {
+			this.lastName = lastName;
+			return this;
+		}
+
+		public Builder ects(int ects) {
+			this.etcs = ects;
+			return this;
+		}
+
+		public Builder address(Address address) {
+			this.adress = address;
+			return this;
+		}
+
+		public Student build() {
+			return new Student(this);
+		}
+
 	}
 
 	public String getMatrNr() {
@@ -68,11 +106,11 @@ public class Student {
 		this.etcs = etcs;
 	}
 
-	public Adress getAdress() {
-		return adress;
+	public Address getAdress() {
+		return address;
 	}
 
-	public void setAdress(Adress adress) {
-		this.adress = adress;
+	public void setAdress(Address adress) {
+		this.address = adress;
 	}
 }

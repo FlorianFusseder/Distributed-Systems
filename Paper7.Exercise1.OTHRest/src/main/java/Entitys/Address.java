@@ -12,15 +12,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Florian
  */
 @XmlRootElement
-public class Adress {
+public class Address {
 
 	private String street;
 	private String location;
 
-	public Adress() {
+	public Address() {
 	}
 
-	public Adress(String street, String location) {
+	public Address(String street, String location) {
 		this.street = street;
 		this.location = location;
 	}
