@@ -84,7 +84,6 @@ public class StudentService implements Serializable {
 				.build();
 		
 		Persistence.add(student);
-
 		
 	}
 

@@ -5,7 +5,6 @@
  */
 package Entitys;
 
-import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -15,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Student {
 
-	private int matrielNr;
+	private int matrikelNr;
 	private String vorname;
 	private String nachname;
 	private int etcs;
@@ -24,20 +23,58 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(int matrielNr, String vorname, String nachname, int etcs, Addresse addresse) {
-		this.matrielNr = matrielNr;
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.etcs = etcs;
-		this.addresse = addresse;
+	private Student(Builder b) {
+		this.matrikelNr = b.matrikelNr;
+		this.vorname = b.vorname;
+		this.nachname = b.nachname;
+		this.etcs = b.ects;
+		this.addresse = b.addresse;
+	}
+	
+	public static class Builder{
+		private int matrikelNr;
+		private String vorname;
+		private String nachname;
+		private int ects;
+		Addresse addresse;
+
+		public Builder(int Nummer) {
+			this.matrikelNr = Nummer;
+		}
+		
+		public Builder vorname(String vorname){
+			this.vorname = vorname;
+			return this;
+		}
+		
+		public Builder nachname(String nachname){
+			this.nachname = nachname;
+			return this;
+		}
+		
+		public Builder ects(int ects){
+			this.ects = ects;
+			return this;
+		}
+		
+		public Builder addresse(Addresse addresse){
+			this.addresse = addresse;
+			return this;
+		}
+		
+		public Student build(){
+			return new Student(this);
+		}
+		
+		
 	}
 
 	public int getMatrielNr() {
-		return matrielNr;
+		return matrikelNr;
 	}
 
 	public void setMatrielNr(int matrielNr) {
-		this.matrielNr = matrielNr;
+		this.matrikelNr = matrielNr;
 	}
 
 	public String getVorname() {
@@ -75,7 +112,7 @@ public class Student {
 	@Override
 	public int hashCode() {
 		int hash = 5;
-		hash = 19 * hash + this.matrielNr;
+		hash = 19 * hash + this.matrikelNr;
 		return hash;
 	}
 
@@ -91,11 +128,11 @@ public class Student {
 			return false;
 		}
 		final Student other = (Student) obj;
-		return this.matrielNr == other.matrielNr;
+		return this.matrikelNr == other.matrikelNr;
 	}
 
 	@Override
 	public String toString() {
-		return "Student{" + "matrielNr=" + matrielNr + ", vorname=" + vorname + ", nachname=" + nachname + ", etcs=" + etcs + ", addresse=" + addresse + '}';
+		return "Student{" + "matrielNr=" + matrikelNr + ", vorname=" + vorname + ", nachname=" + nachname + ", etcs=" + etcs + ", addresse=" + addresse + '}';
 	}
 }
