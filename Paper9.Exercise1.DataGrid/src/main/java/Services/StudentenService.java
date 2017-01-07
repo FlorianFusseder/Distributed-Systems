@@ -7,12 +7,16 @@ package Services;
 
 import Entitys.Addresse;
 import Entitys.Student;
+import com.hazelcast.core.ReplicatedMap;
+import ff.paper9.exercise1.datagrid.main;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.GET;
@@ -28,9 +32,10 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("students")
 public class StudentenService implements Serializable {
-	
-	private static final Logger log = Logger.getLogger(StudentenService.class.getName());
-;
+
+	private static final Logger logger = Logger.getLogger(StudentenService.class.getName());
+
+	;
 
 	public StudentenService() {
 	}
@@ -41,7 +46,7 @@ public class StudentenService implements Serializable {
 	public Student getStudent(@PathParam("id") int Id) {
 		return GetStudentById(Id);
 	}
-	
+
 	@GET
 	@Path("get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -50,9 +55,18 @@ public class StudentenService implements Serializable {
 	}
 
 	private Student GetStudentById(int Id) {
-		
-		log.info("Student mit Id:" + Id + " holen");
-		
+
+		logger.info("Student mit Id:" + Id + " holen");
+
+		ReplicatedMap<Integer, Student> students = main.hazelcast.getReplicatedMap("m");
+
+		if (students.containsKey(Id)) {
+			logger.info("Found Student in Hazelcast");
+			return students.get(Id);
+
+		}
+
+		logger.info("Didn't find Student, starting to search in DB");
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -67,19 +81,24 @@ public class StudentenService implements Serializable {
 			ResultSet set = stmt.executeQuery(query);
 
 			if (set.next()) {
-				log.info("Student mit Id:" + Id + " holen");
-				return new Student.Builder(set.getInt(1))
+				logger.info("Student mit Id:" + Id + " holen");
+				Student s = new Student.Builder(set.getInt(1))
 						.vorname(set.getString(2))
 						.nachname(set.getString(3))
 						.ects(set.getInt(4))
 						.addresse(new Addresse(set.getString(5), set.getString(6)))
 						.build();
+
+				students.put(s.getMatrielNr(), s, 10, TimeUnit.SECONDS);
+				
+				return s;
 			}
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			System.out.println(ex.getMessage());
 		}
+		logger.severe("No student found");
 		return null;
 	}
 }

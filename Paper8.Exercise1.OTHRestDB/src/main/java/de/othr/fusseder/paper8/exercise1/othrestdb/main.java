@@ -34,7 +34,8 @@ public class main {
 		
 		httpServer.start();
 		
-		JOptionPane.showMessageDialog(null, "Server started Successfully");
+		JOptionPane.showMessageDialog(null, "Stop Server");
+		httpServer.stop(0);
 	}
 	
 }
