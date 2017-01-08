@@ -8,6 +8,7 @@ package ff.paper9.exercise1.datagrid;
 import Entitys.Student;
 import Services.PruefungsleistungsService;
 import Services.StudentenService;
+import Services.VeranstaltungService;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.NetworkConfig;
@@ -45,6 +46,7 @@ public class main {
 		ResourceConfig resourceConfig = new ResourceConfig();
 		resourceConfig.register(StudentenService.class);
 		resourceConfig.register(PruefungsleistungsService.class);
+		resourceConfig.register(VeranstaltungService.class);
 		HttpHandler httpHandler = RuntimeDelegate.getInstance().createEndpoint(resourceConfig, HttpHandler.class);
 		httpServer.createContext("/fh", httpHandler);
 		httpServer.start();
@@ -54,7 +56,6 @@ public class main {
 		// Hazelcast-Instanz erzeugen:
 		// Netzwerk-Configuration erstellen
 		Config hazelcastConfig = new Config();
-		hazelcastConfig.setInstanceName("i");
 		hazelcastConfig.getNetworkConfig().setPortAutoIncrement(true);
 		NetworkConfig networkConfig = hazelcastConfig.getNetworkConfig();
 		networkConfig.getInterfaces().setEnabled(false);

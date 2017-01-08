@@ -9,7 +9,6 @@ import com.hazelcast.nio.serialization.Portable;
 import com.hazelcast.nio.serialization.PortableReader;
 import com.hazelcast.nio.serialization.PortableWriter;
 import java.io.IOException;
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
