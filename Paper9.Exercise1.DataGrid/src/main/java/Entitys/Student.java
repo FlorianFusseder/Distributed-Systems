@@ -5,6 +5,11 @@
  */
 package Entitys;
 
+import com.hazelcast.nio.serialization.Portable;
+import com.hazelcast.nio.serialization.PortableReader;
+import com.hazelcast.nio.serialization.PortableWriter;
+import java.io.IOException;
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -12,7 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Florian Fußeder
  */
 @XmlRootElement
-public class Student {
+public class Student implements Portable {
+	
+	public final static int ID = 5;
 
 	private int matrikelNr;
 	private String vorname;
@@ -29,6 +36,26 @@ public class Student {
 		this.nachname = b.nachname;
 		this.etcs = b.ects;
 		this.addresse = b.addresse;
+	}
+
+	@Override
+	public int getFactoryId() {
+		return 1;
+	}
+
+	@Override
+	public int getClassId() {
+		return ID;
+	}
+
+	@Override
+	public void writePortable(PortableWriter writer) throws IOException {
+		writer.writeUTF("vorname", vorname);
+	}
+
+	@Override
+	public void readPortable(PortableReader reader) throws IOException {
+		vorname = reader.readUTF("vorname");
 	}
 
 	public static class Builder {

@@ -5,14 +5,19 @@
  */
 package ff.paper9.exercise1.datagrid;
 
+import Entitys.Student;
 import Services.PruefungsleistungsService;
 import Services.StudentenService;
 import com.hazelcast.config.Config;
 import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.NetworkConfig;
 import com.hazelcast.config.ReplicatedMapConfig;
+import com.hazelcast.config.SerializationConfig;
+import com.hazelcast.config.SerializerConfig;
+import com.hazelcast.config.XmlConfigBuilder;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.nio.serialization.ClassDefinition;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
@@ -60,7 +65,10 @@ public class main {
 		joinConfig.getMulticastConfig().setEnabled(true);
 		joinConfig.getMulticastConfig().setMulticastGroup("224.2.2.3");
 		joinConfig.getMulticastConfig().setMulticastPort(54327);
-
+		
+		//Serialtion Config
+		hazelcastConfig.getSerializationConfig().addPortableFactory(1, new MyPortableFactory());
+		
 		// Neue Hazelcast-Instanz erzeugen
 		hazelcast = Hazelcast.newHazelcastInstance(hazelcastConfig);
 
