@@ -50,12 +50,21 @@ public class Student implements Portable {
 
 	@Override
 	public void writePortable(PortableWriter writer) throws IOException {
-		writer.writeUTF("vorname", vorname);
+		writer.writeInt("matr", matrikelNr);
+		writer.writeUTF("vorname", this.vorname);
+		writer.writeUTF("nachname", this.nachname);
+		writer.writeInt("ects", this.etcs);
+		writer.writeUTF("ort", this.addresse.getOrt());
+		writer.writeUTF("strasse", this.addresse.getStrasse());
 	}
 
 	@Override
 	public void readPortable(PortableReader reader) throws IOException {
-		vorname = reader.readUTF("vorname");
+		this.matrikelNr=reader.readInt("matr");
+		this.vorname=reader.readUTF("vorname");
+		this.nachname=reader.readUTF("nachname");
+		this.etcs=reader.readInt("ects");
+		this.addresse = new Addresse(reader.readUTF("ort"), reader.readUTF("strasse"));
 	}
 
 	public static class Builder {

@@ -63,7 +63,6 @@ public class StudentenService implements Serializable {
 		if (students.containsKey(Id)) {
 			logger.info("Found Student in Hazelcast");
 			return students.get(Id);
-
 		}
 
 		logger.info("Didn't find Student, starting to search in DB");
