@@ -62,7 +62,12 @@ public class StudentenService implements Serializable {
 
 		if (students.containsKey(Id)) {
 			logger.info("Found Student in Hazelcast");
-			return students.get(Id);
+			Student s = students.get(Id);
+			if (s == null) {
+				students.remove(Id);
+			} else {
+				return s;
+			}
 		}
 
 		logger.info("Didn't find Student, starting to search in DB");
@@ -89,7 +94,7 @@ public class StudentenService implements Serializable {
 						.build();
 
 				students.put(s.getMatrielNr(), s, 10, TimeUnit.SECONDS);
-				
+
 				return s;
 			}
 

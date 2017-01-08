@@ -54,6 +54,7 @@ public class main {
 		// Hazelcast-Instanz erzeugen:
 		// Netzwerk-Configuration erstellen
 		Config hazelcastConfig = new Config();
+		hazelcastConfig.setInstanceName("i");
 		hazelcastConfig.getNetworkConfig().setPortAutoIncrement(true);
 		NetworkConfig networkConfig = hazelcastConfig.getNetworkConfig();
 		networkConfig.getInterfaces().setEnabled(false);
