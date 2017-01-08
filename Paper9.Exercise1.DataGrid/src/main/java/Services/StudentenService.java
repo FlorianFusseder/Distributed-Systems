@@ -64,7 +64,8 @@ public class StudentenService implements Serializable {
 			logger.info("Found Student in Hazelcast");
 			Student s = students.get(Id);
 			if (s == null) {
-				students.remove(Id);
+				logger.info("But is null -> throw out");
+				//students.remove(Id);
 			} else {
 				return s;
 			}
