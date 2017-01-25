@@ -28,6 +28,5 @@ public class Server {
 		webserver.createContext("/webapi", handler);
 		webserver.start();
 		
-		JOptionPane.showMessageDialog(null, "Server started");
 	}	
 }

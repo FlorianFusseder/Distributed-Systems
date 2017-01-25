@@ -8,6 +8,9 @@ package paper5.exercise1.bank;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -16,29 +19,27 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @author Florian
  */
 public class LiquidityChecker implements ILiquidiyChecker {
-    
-	private Executor exec;
 
-    public LiquidityChecker() {
-        this.exec = new ScheduledThreadPoolExecutor(16);
-    }
+	private ExecutorService exec;
 
-    @Override
-    public IFuture checkCheque(Cheque cheque) throws RemoteException {
+	public LiquidityChecker() {
+		this.exec = Executors.newScheduledThreadPool(16);
+	}
 
-        FutureTask<Boolean> future = new FutureTask<>(
-                () -> {
-                    Thread.sleep(5000);
-                    Boolean b = cheque.getPayAccount().getBalance() > cheque.getPayment();
-                    System.out.println(b + " -> " + cheque.getPayAccount().toString() + " > " + 0);
-
-                    return b;
-                });
+	@Override
+	public IFuture checkCheque(Cheque cheque) throws RemoteException {
 		
-        exec.execute(future);
+		Future<Boolean> future = this.exec.submit(() -> {
+			Thread.sleep(5000);
+			Boolean b = cheque.getPayAccount().getBalance() > cheque.getPayment();
+			System.out.println(b + " -> " + cheque.getPayAccount().toString() + " > " + 0);
+
+			return b;
+		});
+
 		IFuture futureWrap = new FutureWrap(future);
-		
+
 		IFuture returnFuture = (IFuture) UnicastRemoteObject.exportObject(futureWrap, 0);
 		return returnFuture;
-    }
+	}
 }

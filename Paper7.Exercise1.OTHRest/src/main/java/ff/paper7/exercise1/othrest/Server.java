@@ -20,7 +20,7 @@ import org.glassfish.jersey.server.ResourceConfig;
  */
 public class Server {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
 		Persistence.build();
 
@@ -33,7 +33,9 @@ public class Server {
 		webserver.createContext("/othrest", handler);
 		webserver.start();
 
-		JOptionPane.showMessageDialog(null, "Server started");
+//		JOptionPane.showMessageDialog(null, "Server started");
+		
+		System.out.println("server started");
 
 	}
 }
